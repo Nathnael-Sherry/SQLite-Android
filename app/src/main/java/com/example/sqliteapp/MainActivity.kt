@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         db = openOrCreateDatabase("nateDB", Context.MODE_PRIVATE, null)
 
 //        creating a table
-        db.execSQL("CREATE TABLE IF NOT  EXITS users(jina VARCHAR, arafa VARCHAR, kitambulisho VARCHAR)")
+        db.execSQL("CREATE TABLE IF NOT  EXISTS users(jina VARCHAR, arafa VARCHAR, kitambulisho VARCHAR)")
 
 
         btn_view.setOnClickListener {
@@ -49,7 +49,9 @@ class MainActivity : AppCompatActivity() {
             if (name_edt.isEmpty() || email_edt.isEmpty() || idnum_edt.isEmpty())
                 Toast.makeText(this, "Check Your Input Fields", Toast.LENGTH_SHORT).show()
             else {
-                db.execSQL("INSERT INTO users VALUES('')")
+                db.execSQL("INSERT INTO users VALUES('"+name_edt+"', '"+email_edt+"', '"+idnum_edt+"')")
+
+                Toast.makeText(this, "DATA SAVED SUCCESSFULLY", Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -60,3 +62,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
