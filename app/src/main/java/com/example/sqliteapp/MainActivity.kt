@@ -41,16 +41,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_save.setOnClickListener {
-            var name_edt = tname.text.toString().trim()
-            var email_edt = temail.text.toString().trim()
-            var idnum_edt = tidnum.text.toString().trim()
+            //Receive data from the user
+            var name = tname.text.toString()
+            var email = temail.text.toString()
+            var id_number = tidnum.text.toString()
+            //Check if the user is trying to submit empty records
+            if (name.isEmpty() or email.isEmpty() or id_number.isEmpty()){
+                //Use the display_message() to Display a message telling the user to fill all the inputs
 
-//            validate user statement
-            if (name_edt.isEmpty() || email_edt.isEmpty() || idnum_edt.isEmpty())
-                Toast.makeText(this, "Check Your Input Fields", Toast.LENGTH_SHORT).show()
-            else {
-                db.execSQL("INSERT INTO users VALUES('"+name_edt+"', '"+email_edt+"', '"+idnum_edt+"')")
+                //toast a message to say cannot submit empty field
+                Toast.makeText(this, "CHECK YOUR DATA INPUT FIELDS", Toast.LENGTH_SHORT).show()
 
+
+            }else{
+                //Proceed to save your data into the db
+                db.execSQL("INSERT INTO users VALUES('"+name+"','"+email+"','"+id_number+"')")
+
+            //Toast a success message
                 Toast.makeText(this, "DATA SAVED SUCCESSFULLY", Toast.LENGTH_SHORT).show()
 
             }
